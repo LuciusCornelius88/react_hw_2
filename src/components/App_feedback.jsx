@@ -4,7 +4,7 @@ import Statistics from './Statistics/Statistics';
 import Section from './Section/Section';
 import Notification from './Notification/Notification';
 
-class App extends Component {
+class AppFeedback extends Component {
   NOTIFICATION_MESSAGE = 'There is no feedback';
 
   state = {
@@ -69,4 +69,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AppFeedback;
