@@ -1,4 +1,5 @@
 import { Form, Title, InputContainer, InputField, ButtonsContainer, FormButton } from './InputForm.styled';
+import PropTypes from 'prop-types';
 
 const InputForm = ({ onSubmit, onReset, onChange }) => {
   return (
@@ -40,6 +41,12 @@ const InputForm = ({ onSubmit, onReset, onChange }) => {
       </InputContainer>
     </Form>
   );
+};
+
+InputForm.propTypes = {
+  onSubmit: PropTypes.elementType.isRequired,
+  onReset: PropTypes.elementType.isRequired,
+  onChange: PropTypes.elementType.isRequired,
 };
 
 export default InputForm;

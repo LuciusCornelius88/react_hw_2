@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-import InputForm from './InputForm/InputForm';
-import Filter from './Filter/Filter';
-import ContactsList from './ContactsList/ContactsList';
+import InputForm from '../InputForm/InputForm';
+import Filter from '../Filter/Filter';
+import ContactsList from '../ContactsList/ContactsList';
 
 import { Container, Subtitle } from './App_phonebook.styled';
 
@@ -32,10 +32,10 @@ class AppPhonebook extends Component {
     evt.preventDefault();
     if (this.state.contacts.some((contact) => contact.name === this.state.name)) {
       alert(`${this.state.name} is already in the contacts list!`);
-      this.resetForm();
     } else {
       this.setState((prevState) => ({ contacts: [...prevState.contacts, { id: nanoid(), name: this.state.name, number: this.state.number }] }));
     }
+    this.resetForm();
     evt.target.reset();
   };
 

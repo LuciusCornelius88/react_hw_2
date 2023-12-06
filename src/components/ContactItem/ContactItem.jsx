@@ -1,4 +1,5 @@
 import { ContactContainer, ContactLi, ContactData, DeleteButton } from './ContactItem.styled';
+import PropTypes from 'prop-types';
 
 const ContactItem = ({ contact, onDelete }) => {
   return (
@@ -12,6 +13,11 @@ const ContactItem = ({ contact, onDelete }) => {
       </ContactContainer>
     </ContactLi>
   );
+};
+
+ContactItem.propTypes = {
+  contact: PropTypes.object.isRequired,
+  onDelete: PropTypes.elementType.isRequired,
 };
 
 export default ContactItem;
