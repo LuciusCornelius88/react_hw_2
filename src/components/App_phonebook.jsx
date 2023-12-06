@@ -1,8 +1,11 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+
 import InputForm from './InputForm/InputForm';
 import Filter from './Filter/Filter';
 import ContactsList from './ContactsList/ContactsList';
+
+import { Container, Subtitle } from './App_phonebook.styled';
 
 const INIT_STATE = {
   contacts: [
@@ -54,20 +57,35 @@ class AppPhonebook extends Component {
     }));
   };
 
+  componentDidMount() {
+    document.body.addEventListener('mouseup', this.handleMouseUp);
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('mouseup', this.handleMouseUp);
+  }
+
+  handleMouseUp = () => {
+    const focusedButton = document.activeElement;
+    if (focusedButton.tagName === 'BUTTON') {
+      focusedButton.blur();
+    }
+  };
+
   render() {
     const filteredContacts = this.state.contacts.filter((contact) =>
       contact.name.toLocaleLowerCase().includes(this.state.filter.toLocaleLowerCase())
     );
 
     return (
-      <div className="container">
+      <Container className="container" onMouseUp={this.handleMouseUp}>
         <InputForm onSubmit={this.onSubmit} onReset={this.onReset} onChange={this.onChange} />
         <div className="phonebook-list-container">
-          <h2 className="main-title">Contacts</h2>
+          <Subtitle className="main-title">Contacts</Subtitle>
           <Filter onChange={this.onChange} />
           <ContactsList filteredContacts={filteredContacts} onDelete={this.onDelete} />
         </div>
-      </div>
+      </Container>
     );
   }
 }

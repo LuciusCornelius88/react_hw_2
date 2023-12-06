@@ -1,19 +1,21 @@
+import { FeedbackContainer, FeedbackButton } from './FeedbackOptions.styled';
+
 const FeedbackOptions = ({ onClick, onReset }) => {
   return (
-    <>
-      <button type="button" name="good" onClick={onClick}>
+    <FeedbackContainer className="feedback-options">
+      <FeedbackButton type="button" name="good" onClick={onClick}>
         Good
-      </button>
-      <button type="button" name="neutral" onClick={onClick}>
+      </FeedbackButton>
+      <FeedbackButton type="button" name="neutral" onClick={onClick}>
         Neutral
-      </button>
-      <button type="button" name="bad" onClick={onClick}>
+      </FeedbackButton>
+      <FeedbackButton type="button" name="bad" onClick={onClick}>
         Bad
-      </button>
-      <button type="button" name="bad" onClick={onReset}>
+      </FeedbackButton>
+      <FeedbackButton type="button" name="bad" onClick={onReset}>
         Reset
-      </button>
-    </>
+      </FeedbackButton>
+    </FeedbackContainer>
   );
 };
 

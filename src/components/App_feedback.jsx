@@ -3,6 +3,7 @@ import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
 import Section from './Section/Section';
 import Notification from './Notification/Notification';
+import { Container } from './App_feedback.styled';
 
 class AppFeedback extends Component {
   NOTIFICATION_MESSAGE = 'There is no feedback';
@@ -45,10 +46,25 @@ class AppFeedback extends Component {
     }
   };
 
+  componentDidMount() {
+    document.addEventListener('mouseup', this.handleMouseUp);
+  }
+
+  componentDidUnMount() {
+    document.removeEventListener('mouseup', this.handleMouseUp);
+  }
+
+  handleMouseUp = () => {
+    const activeElement = document.activeElement;
+    if (activeElement.tagName === 'BUTTON') {
+      activeElement.blur();
+    }
+  };
+
   render() {
     return (
-      <div className="container">
-        <Section title={'Feedback Options'} className={'feedback-container'}>
+      <Container className="container">
+        <Section title={'Please leave feedback'} className={'feedback-container'}>
           <FeedbackOptions onClick={this.onClick} onReset={this.onReset} />
         </Section>
         <Section title={'Statistics'} className={'statistics-container'}>
@@ -64,7 +80,7 @@ class AppFeedback extends Component {
             <Notification message={this.NOTIFICATION_MESSAGE} />
           )}
         </Section>
-      </div>
+      </Container>
     );
   }
 }
